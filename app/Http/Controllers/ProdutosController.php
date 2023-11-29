@@ -24,15 +24,6 @@ class ProdutosController extends Controller
         return response()->json(["message" => "Produto cadastrado com sucesso."], 201);
     }
 
-    public function show($id)
-    {
-        $produto = Produtos::find($id);
-        if (!$produto) {
-            return response()->json(["message" => "Produto não encontrado."], 404);
-        }
-        return response()->json($produto);
-    }
-
     public function update(Request $request, $id)
     {
         $produto = Produtos::find($id);
@@ -46,6 +37,15 @@ class ProdutosController extends Controller
         $produto->save();
 
         return response()->json(["message" => "Produto atualizado com sucesso."], 200);
+    }
+
+    public function show($id)
+    {
+        $produto = Produtos::find($id);
+        if (!$produto) {
+            return response()->json(["message" => "Produto não encontrado."], 404);
+        }
+        return response()->json($produto);
     }
 
     public function destroy($id)
